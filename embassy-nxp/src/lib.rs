@@ -3,7 +3,6 @@
 pub mod gpio;
 mod pac_utils;
 pub mod pint;
-
 pub use embassy_hal_internal::Peri;
 pub use lpc55_pac as pac;
 
@@ -15,9 +14,14 @@ pub use lpc55_pac as pac;
 pub fn init(_config: config::Config) -> Peripherals {
     gpio::init();
     pint::init();
-
+    #[cfg(feature = "log-to-defmt")]
+    log_to_defmt::setup();
+    log::info!("Initialization complete");
     crate::Peripherals::take()
 }
+
+#[cfg(not(any(feature = "lpc55")))]
+compile_error!("You must enable a Cargo feature. The only existent one for now is lpc55.");
 
 embassy_hal_internal::peripherals! {
     // External pins. These are not only GPIOs, they are multi-purpose pins and can be used by other

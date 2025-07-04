@@ -6,7 +6,7 @@ license = "MIT OR Apache-2.0"
 
 
 [dependencies]
-embassy-nxp = { version = "0.1.0", path = "../../embassy-nxp", features = ["rt"] }
+embassy-nxp = { version = "0.1.0", path = "../../embassy-nxp", features=["rt","lpc55"] }
 embassy-executor = { version = "0.7.0", path = "../../embassy-executor", features = ["arch-cortex-m", "executor-thread", "executor-interrupt"] }
 embassy-sync = { version = "0.7.0", path = "../../embassy-sync", features = ["defmt"] }
 embassy-time = { version = "0.4.0", path = "../../embassy-time", features = ["defmt"] }
@@ -17,6 +17,10 @@ defmt = "1.0.1"
 defmt-rtt = "1.0.0"
 panic-probe = { version = "1.0.0", features = ["print-defmt"] }
 panic-semihosting = "0.6.0"
+
+[features]
+## To test all-logs mode
+log-to-defmt = ["embassy-nxp/log-to-defmt"]
 
 [profile.release]
 debug = 2
