@@ -8,6 +8,8 @@ pub(crate) mod fmt;
 pub mod dma;
 pub mod gpio;
 #[cfg(feature = "lpc55-core0")]
+pub mod i2c;
+#[cfg(feature = "lpc55-core0")]
 pub mod pint;
 #[cfg(feature = "lpc55-core0")]
 pub mod pwm;
